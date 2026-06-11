@@ -1,0 +1,110 @@
+/* ============================================================
+   Design tokens — warm minimalist Anthropic-inspired system
+   ============================================================ */
+
+:root {
+  /* Backgrounds */
+  --bg-primary: #FAF8F4;
+  --bg-secondary: #F5F3F0;
+  --bg-white: #FFFFFF;
+
+  /* Text */
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-tertiary: #555555;
+  --text-muted: #777777;
+
+  /* Accent (warm orange) */
+  --accent-primary: #D97149;
+  --accent-hover: #C45A33;
+  --accent-light: #FFF4F0;
+  --accent-lighter: #FFF9F7;
+
+  /* Borders */
+  --border-light: #F0EDE9;
+  --border-medium: #E8E5E1;
+  --border-dark: #DDD9D4;
+
+  /* Spacing scale */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  --spacing-3xl: 6rem;
+
+  /* Fonts */
+  --font-serif: 'Times New Roman', 'SongTi', 'SimSun', '宋体', serif;
+  --font-ui: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Consolas', monospace;
+
+  /* Layout widths */
+  --width-prose: 680px;
+  --width-content: 960px;
+  --width-shell: 1080px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1C1917;
+    --bg-secondary: #292524;
+    --bg-white: #292524;
+
+    --text-primary: #FAFAF9;
+    --text-secondary: #E7E5E4;
+    --text-tertiary: #D6D3D1;
+    --text-muted: #A8A29E;
+
+    --accent-light: #3D2A22;
+    --accent-lighter: #2C2018;
+
+    --border-light: #3F3A36;
+    --border-medium: #57534E;
+    --border-dark: #78716C;
+  }
+}
+
+/* ============================================================
+   Reset + base
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  line-height: 1.6;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv01', 'cv09';
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+::selection {
+  background: var(--accent-light);
+  color: var(--accent-hover);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--border-medium); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
