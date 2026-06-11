@@ -10,7 +10,7 @@ npm install
 npm run dev
 ```
 
-打开 http://localhost:3000。
+打开 http://localhost:3004。
 
 笔记内容直接读取 `../docs/research/` 下的文件,无需复制——改 markdown,刷新即可。
 
