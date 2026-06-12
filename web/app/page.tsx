@@ -5,7 +5,9 @@ import styles from "./page.module.css";
 export default function HomePage() {
   const phase1 = getNotesByPhase("phase1");
   const phase2 = getNotesByPhase("phase2");
+  const phase3 = getNotesByPhase("phase3");
   const totalQa = getAllNotes().filter((n) => n.kind === "qa").length;
+  const totalNotes = phase1.length + phase2.length + phase3.length;
 
   return (
     <div className={styles.wrap}>
@@ -31,7 +33,7 @@ export default function HomePage() {
 
       <section className={styles.stats}>
         <div className={styles.statItem}>
-          <div className={styles.statNum}>2</div>
+          <div className={styles.statNum}>3</div>
           <div className={styles.statLabel}>研究阶段</div>
         </div>
         <div className={styles.statItem}>
@@ -39,7 +41,7 @@ export default function HomePage() {
           <div className={styles.statLabel}>Q&amp;A 深挖</div>
         </div>
         <div className={styles.statItem}>
-          <div className={styles.statNum}>{phase1.length + phase2.length}</div>
+          <div className={styles.statNum}>{totalNotes}</div>
           <div className={styles.statLabel}>笔记总数</div>
         </div>
       </section>
@@ -56,6 +58,12 @@ export default function HomePage() {
           label={getPhaseLabel("phase2")}
           summary="工具系统(Tool 接口规约、注册表、StreamingToolExecutor、ToolSearch 按需加载)与上下文压缩(snip / microcompact / contextCollapse / autocompact 5 层流水线)的设计细节。"
           notes={phase2}
+        />
+        <PhaseCard
+          phase="phase3"
+          label={getPhaseLabel("phase3")}
+          summary="记忆系统(memdir、autoDream、Agent memory snapshot、Team memory)。MEMORY.md 怎么注入,sideQuery 怎么 prefetch 相关记忆,后台 forked agent 怎么跨 session 巩固。"
+          notes={phase3}
         />
       </section>
     </div>

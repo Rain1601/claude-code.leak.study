@@ -3,7 +3,7 @@ import path from "node:path";
 
 const RESEARCH_DIR = path.join(process.cwd(), "..", "docs", "research");
 
-export type Phase = "phase1" | "phase2";
+export type Phase = "phase1" | "phase2" | "phase3";
 
 export type NoteKind = "main" | "qa" | "qa-index";
 
@@ -22,6 +22,7 @@ export interface NoteMeta {
 const PHASE_LABELS: Record<Phase, string> = {
   phase1: "Phase 1 · Agent Loop 骨架",
   phase2: "Phase 2 · 工具系统与上下文压缩",
+  phase3: "Phase 3 · 记忆系统(Memory)",
 };
 
 export function getPhaseLabel(p: Phase): string {
@@ -144,6 +145,39 @@ function buildSpecs(): NoteSpec[] {
       order: 110 + n,
       qaNumber: n,
     });
+  }
+
+  // Phase 3
+  specs.push({
+    slug: ["phase3"],
+    filePath: path.join(RESEARCH_DIR, "phase3-memory.md"),
+    phase: "phase3",
+    kind: "main",
+    order: 200,
+  });
+  specs.push({
+    slug: ["phase3", "qa"],
+    filePath: path.join(RESEARCH_DIR, "phase3", "question.md"),
+    phase: "phase3",
+    kind: "qa-index",
+    order: 201,
+  });
+  const phase3QaDir = path.join(RESEARCH_DIR, "phase3");
+  if (fs.existsSync(phase3QaDir)) {
+    for (const name of fs.readdirSync(phase3QaDir)) {
+      const m = name.match(/^qa(\d+)\.(.+)\.md$/);
+      if (!m) continue;
+      const n = parseInt(m[1], 10);
+      const topic = m[2];
+      specs.push({
+        slug: ["phase3", "qa", topic],
+        filePath: path.join(phase3QaDir, name),
+        phase: "phase3",
+        kind: "qa",
+        order: 210 + n,
+        qaNumber: n,
+      });
+    }
   }
 
   return specs;

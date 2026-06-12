@@ -34,6 +34,7 @@ export default function RootLayout({
               <Link href="/notes">所有笔记</Link>
               <Link href="/notes/phase1">Phase 1</Link>
               <Link href="/notes/phase2">Phase 2</Link>
+              <Link href="/notes/phase3">Phase 3</Link>
               <a
                 href="https://github.com/Rain1601/claude-code.leak.study"
                 target="_blank"

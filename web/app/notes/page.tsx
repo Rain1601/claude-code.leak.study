@@ -12,6 +12,8 @@ const PHASE_INTRO: Record<Phase, string> = {
     "把 Claude Code 一次用户输入到下一轮的 turn 生命周期走完一遍,提炼 immutable-state-machine、Tool 接口、isConcurrencySafe 调度等可借鉴设计。",
   phase2:
     "工具系统(Tool 接口规约、注册表、StreamingToolExecutor、ToolSearch 按需加载)与上下文压缩(5 层流水线)。",
+  phase3:
+    "记忆系统:memdir 加载链路、三条 read path(system_prompt / nested_memory / relevant_memories)、autoDream 后台跨 session 巩固、Agent memory snapshot 团队传播。",
 };
 
 export default function NotesIndexPage() {
@@ -25,7 +27,7 @@ export default function NotesIndexPage() {
         </p>
       </header>
 
-      {(["phase1", "phase2"] as const).map((phase) => {
+      {(["phase1", "phase2", "phase3"] as const).map((phase) => {
         const notes = getNotesByPhase(phase);
         const mains = notes.filter((n) => n.kind === "main");
         const qaIndex = notes.find((n) => n.kind === "qa-index");
